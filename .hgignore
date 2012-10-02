@@ -1,0 +1,7 @@
+syntax: glob
+*~
+*.swp
+.git
+*.o
+
+.DS_Store
