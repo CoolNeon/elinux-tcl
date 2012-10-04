@@ -253,7 +253,11 @@ COMPILING
 The code compiles with the gcc compiler available on each platform. Note that
 you must include the math library ( -lm ) when compiling because the gamma
 correction subroutine makes use of it. Feel free to look at the included
-Makefile for information about compiling the code.
+Makefile for information about compiling the code. You must compile the
+following files along with your source code:
+
+tclled.h - The library header file.
+tclled.c - The library source code.
 
 ADDITIONAL RESOURCES
 
