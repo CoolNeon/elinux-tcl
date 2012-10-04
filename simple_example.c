@@ -5,6 +5,7 @@
  * This program is distributed under the Artistic License 2.0, a copy of which
  * is included in the file LICENSE.txt
  */
+#include "tclled.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
