@@ -1,3 +1,10 @@
+/*
+ * tcl_speedtest.c
+ *
+ * Copyright 2012 Christopher De Vries
+ * This program is distributed under the Artistic License 2.0, a copy of which
+ * is included in the file LICENSE.txt
+ */
 #include <unistd.h>
 #include <stdio.h>
 #include "tclled.h"

@@ -1,6 +1,6 @@
 CFLAGS = -O3
 CC = gcc
-BUNDLE = Makefile tclled.h tclled.c tcl_speedtest.c blink_test.c simple_example.c
+BUNDLE = Makefile README.txt LICENSE.txt tclled.h tclled.c tcl_speedtest.c blink_test.c simple_example.c
 VERSION = 1.0
 ARCHIVE = elinux-tcl
 LIBS = -lm
