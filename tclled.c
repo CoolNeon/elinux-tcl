@@ -15,13 +15,12 @@ static uint8_t gamma_table_red[256];
 static uint8_t gamma_table_green[256];
 static uint8_t gamma_table_blue[256];
 
-void tcl_init(tcl_buffer *buf, int leds) {
+int tcl_init(tcl_buffer *buf, int leds) {
   buf->leds = leds;
   buf->size = (leds+3)*sizeof(tcl_color);
   buf->buffer = (tcl_color*)malloc(buf->size);
   if(buf->buffer==NULL) {
-    fprintf(stderr, "ERROR: Unable to allocate sufficient memory.");
-    exit(1);
+    return -1;
   }
 
   buf->pixels = buf->buffer+1;
@@ -29,6 +28,8 @@ void tcl_init(tcl_buffer *buf, int leds) {
   write_frame(buf->buffer,0x00,0x00,0x00,0x00);
   write_frame(buf->pixels+leds,0x00,0x00,0x00,0x00);
   write_frame(buf->pixels+leds+1,0x00,0x00,0x00,0x00);
+
+  return 0;
 }
 
 int spi_init(int filedes) {
