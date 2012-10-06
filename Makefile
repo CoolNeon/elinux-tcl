@@ -1,11 +1,11 @@
 CFLAGS = -O3
 CC = gcc
-BUNDLE = Makefile README.txt LICENSE.txt tclled.h tclled.c tcl_speedtest.c blink_test.c simple_example.c
-VERSION = 1.0
+BUNDLE = Makefile README.txt LICENSE.txt tclled.h tclled.c tcl_speedtest.c blink_test.c simple_example.c blink_hsv.c
+VERSION = 1.1
 ARCHIVE = elinux-tcl
 LIBS = -lm
 
-all: tcl_speedtest blink_test simple_example
+all: tcl_speedtest blink_test simple_example blink_hsv
 
 archive: $(BUNDLE)
 	mkdir $(ARCHIVE)-$(VERSION)
@@ -25,6 +25,11 @@ tcl_speedtest.o: tclled.h tcl_speedtest.c
 blink_test.o: tclled.h blink_test.c
 
 blink_test: blink_test.o tclled.o
+	$(CC) $(CFLAGS) $(LIBS) -o $@ $^
+
+blink_hsv.o: tclled.h blink_hsv.c
+
+blink_hsv: blink_hsv.o tclled.o
 	$(CC) $(CFLAGS) $(LIBS) -o $@ $^
 
 simple_example.o: tclled.h simple_example.c
