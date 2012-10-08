@@ -67,12 +67,13 @@ int main(int argc, char *argv[]) {
 
   /* Loop while continue_looping is true */
   while(continue_looping) {
-    h+=0.1;
+    h+=2.0;
     if(h>=360.0) h=0.0;
     memmove(buf.pixels+1,buf.pixels,sizeof(tcl_pixel)*(leds-2));
     HSVtoRGB(h,1.0,1.0,&r,&g,&b);
     write_gamma_color(p,(int)(r*255.0),(int)(g*255.0),(int)floor(b*255.0));
     send_buffer(fd,&buf);
+    usleep(10000);
   }
 
   tcl_free(&buf);
