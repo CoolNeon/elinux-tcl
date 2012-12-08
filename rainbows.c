@@ -69,9 +69,9 @@ int main(int argc, char *argv[]) {
   while(continue_looping) {
     h+=2.0;
     if(h>=360.0) h=0.0;
-    memmove(buf.pixels+1,buf.pixels,sizeof(tcl_pixel)*(leds-2));
+    memmove(buf.pixels+1,buf.pixels,sizeof(tcl_color)*(leds-2));
     HSVtoRGB(h,1.0,1.0,&r,&g,&b);
-    write_gamma_color(p,(int)(r*255.0),(int)(g*255.0),(int)floor(b*255.0));
+    write_gamma_color(buf.pixels,(int)(r*255.0),(int)(g*255.0),(int)floor(b*255.0));
     send_buffer(fd,&buf);
     usleep(10000);
   }
@@ -97,51 +97,51 @@ void stop_program(int sig) {
 /* Convert hsv values (0<=h<360, 0<=s<=1, 0<=v<=1) to rgb values (0<=r<=1, etc) */
 void HSVtoRGB(double h, double s, double v, double *r, double *g, double *b) {
   int i;
-	double f, p, q, t;
+  double f, p, q, t;
 
-	if( s < 1.0e-6 ) {
-		/* grey */
-		*r = *g = *b = v;
-		return;
-	}
+  if( s < 1.0e-6 ) {
+    /* grey */
+    *r = *g = *b = v;
+    return;
+  }
 
-	h /= 60.0;			        /* Divide into 6 regions (0-5) */
-	i = (int)floor( h );
-	f = h - (double)i;			/* fractional part of h */
-	p = v * ( 1.0 - s );
-	q = v * ( 1.0 - s * f );
-	t = v * ( 1.0 - s * ( 1.0 - f ) );
+  h /= 60.0;              /* Divide into 6 regions (0-5) */
+  i = (int)floor( h );
+  f = h - (double)i;      /* fractional part of h */
+  p = v * ( 1.0 - s );
+  q = v * ( 1.0 - s * f );
+  t = v * ( 1.0 - s * ( 1.0 - f ) );
 
-	switch( i ) {
-		case 0:
-		  *r = v;
-			*g = t;
-			*b = p;
-			break;
-		case 1:
-			*r = q;
-			*g = v;
-			*b = p;
-			break;
-		case 2:
-			*r = p;
-			*g = v;
-			*b = t;
-			break;
-		case 3:
-			*r = p;
-			*g = q;
-			*b = v;
-			break;
-		case 4:
-			*r = t;
-			*g = p;
-			*b = v;
-			break;
-		default:		// case 5:
-			*r = v;
-			*g = p;
-			*b = q;
-			break;
-	}
+  switch( i ) {
+    case 0:
+      *r = v;
+      *g = t;
+      *b = p;
+      break;
+    case 1:
+      *r = q;
+      *g = v;
+      *b = p;
+      break;
+    case 2:
+      *r = p;
+      *g = v;
+      *b = t;
+      break;
+    case 3:
+      *r = p;
+      *g = q;
+      *b = v;
+      break;
+    case 4:
+      *r = t;
+      *g = p;
+      *b = v;
+      break;
+    default:    // case 5:
+      *r = v;
+      *g = p;
+      *b = q;
+      break;
+  }
 }
