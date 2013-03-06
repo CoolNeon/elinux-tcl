@@ -1,5 +1,5 @@
 Total Control Lighting (p9813) Embedded Linux Library
-Copyright 2012 Christopher De Vries
+Copyright 2012-2013 Christopher De Vries
 www.idolstarastronomer.com
 
 INTRODUCTION
@@ -143,6 +143,12 @@ common ground. A typical wiring diagram is shown below:
 +                      Pin 23 +---------------+ Clock                       |
 +-----------------------------+               +-----------------------------+
 
+With the Raspberry Pi it is also necessary to run two modprobe commands as
+root in order to enable SPI. The commands are:
+
+    modprobe spidev
+    modprobe spi_bcm2708
+
 LIBRARY
 
 This library is written in ANSI C, and I will demonstrate how to use it by
@@ -179,6 +185,10 @@ below.
         exit(1);
     }
 
+Note that you can edit the Makefile to uncomment the correct line
+corresponding to Beaglebone or Raspberry Pi which will automatically set the
+SPI device name.
+ 
 Next create a buffer for your pixel color and flag values. I will assume there
 are 50 LEDs in our Total Control Lighting strand for the example below.
 
