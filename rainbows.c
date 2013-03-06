@@ -15,7 +15,11 @@
 #include <signal.h>
 #include <math.h>
 
-static const char *device = "/dev/spidev2.0";
+#ifndef SPIFILE
+#define SPIFILE "/dev/spidev2.0"
+#endif
+
+static const char *device = SPIFILE;
 static const int leds = 500;
 static int continue_looping;
 

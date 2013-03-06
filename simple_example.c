@@ -10,6 +10,12 @@
 #include <unistd.h>
 #include <stdio.h>
 
+#ifndef SPIFILE
+#define SPIFILE "/dev/spidev2.0"
+#endif
+
+static const char *device = SPIFILE;
+
 int main(int argc, char *argv[]) {
   int fd;              /* SPI device file descriptor */
   const int leds = 50; /* 50 LEDs in the strand */
@@ -18,7 +24,7 @@ int main(int argc, char *argv[]) {
   int i;               /* Counting Integer */
 
   /* Open SPI device */
-  fd = open("/dev/spidev2.0",O_WRONLY);
+  fd = open(device,O_WRONLY);
   if(fd<0) {
       /* Open failed */
       fprintf(stderr, "Error: SPI device open failed.\n");

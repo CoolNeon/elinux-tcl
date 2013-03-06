@@ -14,7 +14,11 @@
 #include <sys/time.h>
 #include <sys/types.h>
 
-static const char *device = "/dev/spidev2.0";
+#ifndef SPIFILE
+#define SPIFILE "/dev/spidev2.0"
+#endif
+
+static const char *device = SPIFILE;
 static const int leds = 1250;
 static const int frames = 10000;
 

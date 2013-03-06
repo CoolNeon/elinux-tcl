@@ -1,9 +1,13 @@
-CFLAGS = -O3
 CC = gcc
+CFLAGS = -O3
 BUNDLE = Makefile README.txt LICENSE.txt tclled.h tclled.c tcl_speedtest.c blink_test.c simple_example.c blink_hsv.c rainbows.c
 VERSION = 1.1
 ARCHIVE = elinux-tcl
 LIBS = -lm
+# Uncomment the line below to compile for beaglebone
+CFLAGS += -DSPIFILE=\"/dev/spidev2.0\"
+# Uncomment the line below to compile for Raspberry Pi
+# CFLAGS += -DSPIFILE=\"/dev/spidev0.0\"
 
 all: tcl_speedtest blink_test simple_example blink_hsv rainbows
 
@@ -41,5 +45,5 @@ rainbows.o: tclled.h rainbows.c
 
 rainbows: rainbows.o tclled.o
 	$(CC) $(CFLAGS) $(LIBS) -o $@ $^
-
+	
 tclled.o: tclled.h tclled.c

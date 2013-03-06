@@ -16,7 +16,11 @@
 #include <signal.h>
 #include <math.h>
 
-static const char *device = "/dev/spidev2.0";
+#ifndef SPIFILE
+#define SPIFILE "/dev/spidev2.0"
+#endif
+
+static const char *device = SPIFILE;
 static const int leds = 500;
 static const unsigned long min_interval = 700000L;
 static const unsigned long max_interval = 1300000L;
