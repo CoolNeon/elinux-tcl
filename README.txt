@@ -1,5 +1,5 @@
 Total Control Lighting (p9813) Embedded Linux Library
-Copyright 2012-2013 Christopher De Vries
+Copyright 2012-2015 Christopher De Vries
 www.idolstarastronomer.com
 
 INTRODUCTION
